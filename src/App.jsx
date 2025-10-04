@@ -2,8 +2,14 @@ import { useState } from "react";
 
 function App() {
   const [toggleModal, setToggleModal] = useState(false);
+  const [isBurgerMenuActive, setIsBurgerMenuActive] = useState(false);
+
   function handleToggleModal() {
     setToggleModal(!toggleModal);
+  }
+
+  const handleLinkClick = () => {
+    setIsBurgerMenuActive(false)
   }
 
   return (
@@ -37,22 +43,22 @@ function App() {
                 </a>
                 {/* ***** Logo End ***** */}
                 {/* ***** Menu Start ***** */}
-                <ul className="nav">
+                <ul className="nav" style={{ display: isBurgerMenuActive ? 'block' : '' }}>
                   <li className="scroll-to-section">
-                    <a href="#top" className="active">
+                    <a href="#top" className="active" onClick={handleLinkClick}>
                       Home
                     </a>
                   </li>
-                  <li className="scroll-to-section">
+                  <li className="scroll-to-section" onClick={handleLinkClick}>
                     <a href="#services">Services</a>
                   </li>
-                  <li className="scroll-to-section">
+                  <li className="scroll-to-section" onClick={handleLinkClick}>
                     <a href="#about">About</a>
                   </li>
-                  <li className="scroll-to-section">
+                  <li className="scroll-to-section" onClick={handleLinkClick}>
                     <a href="#pricing">Pricing</a>
                   </li>
-                  <li className="scroll-to-section">
+                  <li className="scroll-to-section" onClick={handleLinkClick}>
                     <a href="#newsletter">Newsletter</a>
                   </li>
                   <li>
@@ -63,7 +69,7 @@ function App() {
                     </div>
                   </li>
                 </ul>
-                <a className="menu-trigger">
+                <a className={`menu-trigger ${isBurgerMenuActive? 'active' : ''}`} onClick={() => setIsBurgerMenuActive(!isBurgerMenuActive)}>
                   <span>Menu</span>
                 </a>
                 {/* ***** Menu End ***** */}
